@@ -1,0 +1,28 @@
+{
+  "cli": {
+    "version": ">= 0.53.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "mealstogo": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "mealstogo2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "mealstogo3": {
+      "developmentClient": true
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
