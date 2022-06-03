@@ -7,6 +7,8 @@ import {
   AccountContainer,
   AuthButton,
   AuthInput,
+  GoogleButton,
+  SocialContainer,
 } from '../components/account.styles';
 import { Text } from '../../../components/typography/text.component';
 import { Spacer } from '../../../components/spacer/spacer.component';
@@ -15,7 +17,9 @@ import { AuthenticationContext } from '../../../services/authentication/authenti
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, isLoading, error } = useContext(AuthenticationContext);
+  const { googleLogin, login, isLoading, error } = useContext(
+    AuthenticationContext
+  );
   return (
     <AccountBackground>
       <AccountCover />
@@ -59,6 +63,15 @@ export const LoginScreen = ({ navigation }) => {
           <ActivityIndicator animating color={Colors.blue300} />
         )}
       </AccountContainer>
+      <SocialContainer>
+        <GoogleButton
+          icon="google"
+          mode="contained"
+          onPress={() => googleLogin()}
+        >
+          Sign in with Google
+        </GoogleButton>
+      </SocialContainer>
       <Spacer variant="top.large" />
       <AuthButton mode="contained" onPress={() => navigation.goBack()}>
         Back
