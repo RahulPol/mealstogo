@@ -1,6 +1,9 @@
-on: [pull_request]
+on:
+  push:
+    branches:
+      - main
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -9,22 +12,18 @@ jobs:
       - name: 🏗 Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: 16.13.2
+          node-version: latest
           cache: npm
 
-      - name: 🏗 Setup Expo
+      - name: 🏗 Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
           expo-version: latest
+          eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
 
       - name: 📦 Install dependencies
         run: npm install
 
-      - name: 🚀 Publish preview
-        run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
-
-      - name: 💬 Comment preview
-        uses: expo/expo-github-action/preview-comment@v7
-        with:
-          channel: pr-${{ github.event.number }}
+      - name: 🚀 Build app
+        run: eas build --non-interactive
