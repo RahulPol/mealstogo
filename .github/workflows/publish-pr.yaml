@@ -6,10 +6,14 @@ jobs:
       - name: 🏗 Setup repo
         uses: actions/checkout@v2
 
+      - name: Read .nvmrc
+        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+        id: nvm
+
       - name: 🏗 Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: current
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
           cache: npm
 
       - name: 🏗 Setup Expo
