@@ -38,7 +38,7 @@
     "react-native-web": "0.17.1",
     "react-native-webview": "^11.21.0",
     "styled-components": "^5.3.5",
-    "expo-auth-session": "~3.5.0",
+    "expo-auth-session": "~3.7.1",
     "expo-random": "~12.1.1",
     "expo-web-browser": "~10.1.0"
   },
